@@ -34,16 +34,14 @@ export default function ChangePassword() {
       confirm_password: "",
       new_password: ""
     },
-    resolver: yupResolver(passwordSchema)
+    // resolver: yupResolver(passwordSchema)
   });
   const updateProfileMutation = useMutation(userApi.updateProfile);
 
   const onSubmit = handleSubmit(async (data) => {
     try {
-      const res = await updateProfileMutation.mutateAsync(
-        omit(data, ["confirm_password"])
-      );
-      toast.success(res.data.message);
+      // const res = await updateProfileMutation.mutateAsync(omit(data, ['confirm_password']))
+      // toast.success(res.data.message);
       reset(); //Hàm này có thể là một hàm để đặt lại giá trị của các trường trong form sau khi nó đã được gửi thành công.
     } catch (error) {
       if (isAxiosUnprocessableEntityError<ErrorResponse<FormData>>(error)) {
@@ -52,7 +50,7 @@ export default function ChangePassword() {
         if (formError) {
           Object.keys(formError).forEach((key) => {
             setError(key as keyof FormData, {
-              message: formError[key as keyof FormData],
+              // message: formError[key as keyof FormData],
               type: "Server"
             });
             //key là tên của trường bị lỗi, keyof FormData giúp đảm bảo rằng key là một trường hợp hợp lệ trong kiểu dữ liệu của form (FormData). { message: formError[key as keyof FormData], type: 'Server' } là đối tượng lỗi được truyền vào hàm setError. Thông báo lỗi được lấy từ giá trị của từng trường trong đối tượng formError và đặt loại lỗi là "Server" để chỉ ra rằng đây là lỗi từ máy chủ.
