@@ -1,6 +1,6 @@
 import axios, { AxiosError } from "axios";
 import HttpStatusCode from "src/constants/httpStatusCode.enum";
-import userImage from "../../../2hktshop/src/assets/react.svg"
+
 
 export function isAxiosError<T>(error: unknown): error is AxiosError<T> {
   // eslint-disable-next-line import/no-named-as-default-member
@@ -51,4 +51,4 @@ export const getIdFromNameId = (nameId: string) => {
 
 
 // GET URL UPLOAD AVATAR
-export const getAvatarURL = (avatarName?: string) => avatarName ? `https://api-ecom.duthanhduoc.com/images/${avatarName}` : userImage
+export const getAvatarURL = (avatarName?: string) => avatarName ? `https://api-ecom.duthanhduoc.com/images/${avatarName}` : ''
